@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     public Rigidbody RB;
 
     Vector3 Velocity;
-    Quaternion Rotation;
 
     void Update()
     {
@@ -21,12 +20,8 @@ public class PlayerController : MonoBehaviour
         RB.velocity = Velocity;
 
 
+        float MouseX = Input.GetAxis("Mouse X") * Sensitivity * Time.deltaTime;
 
-        Rotation = transform.rotation;
-        Rotation.y = Input.mousePosition.x * Sensitivity * Time.deltaTime;
-
-        print(Rotation);
-
-        transform.rotation = Rotation;
+        transform.Rotate(Vector3.up * MouseX);
     }
 }
