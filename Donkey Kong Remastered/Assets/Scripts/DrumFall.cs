@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class DrumFall : MonoBehaviour
 {
-    public AudioClip bang;
+    public GameObject bang;
+    public AudioSource roll;
+    public Rigidbody rb;
 
-    void Update()
+    private void Update()
     {
+        roll.volume = Mathf.Clamp(Mathf.Abs(rb.velocity.z), 0, 1);
 
+        if (transform.position.y < -5)
+            Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Fall")
         {
-            Debug.Log("bang");
+            var objec = Instantiate(bang, transform);
+            objec.transform.parent = transform;
         }
     }
 }
