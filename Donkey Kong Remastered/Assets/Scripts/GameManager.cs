@@ -5,16 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject Player;
+    public float cutSceneTime = 14;
+    public GameObject playerPrefab;
+    public Transform cutScene;
+    public Transform spawnPos;
+    public GameObject cam2;
 
-
-    void Start()
-    {
-        
-    }
+    GameObject Player;
+    bool spawned;
 
     void Update()
     {
+        if (cutSceneTime > 0)
+        cutSceneTime -= 1 * Time.deltaTime;
+
+        if (cutSceneTime <= 0 && !spawned)
+        {
+            spawned = true;
+            Player = Instantiate(playerPrefab, spawnPos);
+            //cam2.SetActive(false);
+            Destroy(cam2);
+        }
+
         if (Player.GetComponent<PlayerController>().Health < 1)
             SceneManager.LoadScene(0);
     }
