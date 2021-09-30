@@ -12,7 +12,7 @@ public class DrumFall : MonoBehaviour
     {
         roll.volume = Mathf.Clamp(Mathf.Abs(rb.velocity.z), 0, 1);
 
-        if (transform.position.y < -5)
+        if (transform.position.y < -20)
             Destroy(gameObject);
     }
 
