@@ -9,11 +9,6 @@ public class CamLook : MonoBehaviour
 
     float xRotation;
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
     void Update()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
