@@ -19,6 +19,11 @@ public class GameManager : MonoBehaviour
     public GameObject winText;
     public bool paues;
     public GameObject pauesScreen;
+    public GameObject saveBabytext;
+    public GameObject bigMokey;
+    public GameObject evilGuy;
+    public GameObject evilGuyRag;
+    public Transform ragSpawn;
 
     GameObject Player;
     bool spawned;
@@ -63,6 +68,8 @@ public class GameManager : MonoBehaviour
             playerPrefab.GetComponentInChildren<Camera>().fieldOfView = PlayerPrefs.GetFloat("fov");
             Player = Instantiate(playerPrefab, spawnPos);
             Destroy(cam2);
+            Destroy(saveBabytext);
+            Destroy(bigMokey);
         }
 
         if (Player.GetComponent<PlayerController>().Health < 1)
@@ -72,6 +79,8 @@ public class GameManager : MonoBehaviour
         {
             if (!saved)
             {
+                Instantiate(evilGuyRag, ragSpawn);
+                Destroy(evilGuy);
                 audioPlayer = Instantiate(happy);
                 saved = true;
                 drumSpawner.SetActive(false);
@@ -87,13 +96,13 @@ public class GameManager : MonoBehaviour
         switch (Player.GetComponent<PlayerController>().Health)
         {
             case 3:
-                hearts.SetText("Health: |||");
+                hearts.SetText("Health: 3");
                 break;
             case 2:
-                hearts.SetText(" Health: ||");
+                hearts.SetText("Health: 2");
                 break;
             case 1:
-                hearts.SetText("Health: |");
+                hearts.SetText("Health: 1");
                 break;
             case 0:
                 hearts.SetText(":(");

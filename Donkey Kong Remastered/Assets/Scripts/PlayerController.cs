@@ -49,8 +49,11 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.transform.gameObject);
             Velocity += Vector3.back * nockBack;
         }
+    }
 
-        if (collision.transform.tag == "Baby")
-            collision.gameObject.SetActive(false);
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "Baby")
+            other.gameObject.SetActive(false);
     }
 }
